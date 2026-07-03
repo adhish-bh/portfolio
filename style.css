@@ -189,7 +189,20 @@ h1 {
   line-height: 1.7;
 }
 
+.note-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
 
+.note-list span {
+  border: 1px solid var(--line);
+  color: var(--muted);
+  padding: 9px 12px;
+  font-size: 0.82rem;
+  background: rgba(255, 255, 255, 0.02);
+}
 
 /* GLOBAL SECTION */
 
@@ -381,10 +394,6 @@ h1 {
   font-size: 0.95rem;
 }
 
-.wide-skill {
-  grid-column: span 3;
-}
-
 /* PROJECTS FUTURISTIC */
 
 .future-section {
@@ -484,10 +493,6 @@ h1 {
   transition: 0.25s ease;
 }
 
-.project-wide {
-  grid-column: span 2;
-}
-
 .project-meta {
   display: flex;
   justify-content: space-between;
@@ -527,6 +532,31 @@ h1 {
   padding: 8px 10px;
   color: var(--text);
   background: rgba(255,255,255,0.035);
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.project-links a {
+  font-family: "Space Mono", monospace;
+  font-size: 0.78rem;
+  border: 1px solid rgba(255,255,255,0.35);
+  padding: 9px 12px;
+  color: var(--text);
+  background: rgba(255,255,255,0.04);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: 0.2s ease;
+}
+
+.project-links a:hover {
+  background: var(--text);
+  color: var(--bg);
+  box-shadow: 0 0 18px rgba(255,255,255,0.22);
 }
 
 /* CONTACT CANVAS */
@@ -661,16 +691,8 @@ footer {
     grid-template-columns: 1fr;
   }
 
-  .project-wide {
-    grid-column: span 1;
-  }
-
   .skill-grid {
     grid-template-columns: 1fr;
-  }
-
-  .wide-skill {
-    grid-column: span 1;
   }
 
   .offset-card {
