@@ -3,158 +3,839 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adhish Bhandari | AI/ML & Data Engineering Portfolio</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <!-- Google Fonts: Anton (Condensed Display), Playfair Display (Editorial Serif), Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600;1,700&display=swap" rel="stylesheet" />
 
-  <title>Adhish Bhandari | Portfolio</title>
+  <style>
+    :root {
+      --bg-violet-bright: #5B18E8;
+      --bg-violet-mid: #3C09A8;
+      --bg-violet-deep: #150438;
+      --bg-obsidian: #05020C;
+      --accent-mint: #7CEAA4;
+      --accent-mint-hover: #96F5B9;
+      --text-white: #FFFFFF;
+      --text-muted: rgba(255, 255, 255, 0.82);
+      --hairline: rgba(255, 255, 255, 0.2);
+    }
 
-  <meta
-    name="description"
-    content="Portfolio of Adhish Bhandari, a Computing with AI student building frontend, Java, Python, Angular, IoT, data analysis, and automation projects."
-  />
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  <meta property="og:title" content="Adhish Bhandari | Portfolio" />
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-obsidian);
+      color: var(--text-white);
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
 
-  <meta
-    property="og:description"
-    content="Computing with AI student building practical software, frontend, Python, Java, Angular, IoT, and data analysis projects."
-  />
+    .font-mono-editorial {
+      font-family: 'JetBrains Mono', monospace;
+    }
 
-  <meta property="og:type" content="website" />
+    /* Reference Image Exact Atmospheric Gradient Background (No Central Portrait) */
+    .hero-canvas {
+      position: relative;
+      min-height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background:
+        radial-gradient(circle at 15% 18%, rgba(108, 42, 255, 0.96) 0%, rgba(72, 16, 204, 0.88) 34%, rgba(30, 6, 88, 0.93) 68%, rgba(5, 2, 12, 1) 100%),
+        radial-gradient(circle at 82% 28%, rgba(84, 24, 228, 0.78) 0%, rgba(18, 4, 54, 0.92) 58%, rgba(4, 1, 10, 1) 100%),
+        linear-gradient(165deg, #5416E0 0%, #31088A 46%, #0E0329 78%, #04010A 100%);
+      overflow: hidden;
+    }
 
-  <link rel="stylesheet" href="style.css" />
+    /* Ambient lighting orbs */
+    .ambient-orb-left {
+      position: absolute;
+      top: -14%;
+      left: -8%;
+      width: 62vw;
+      height: 62vw;
+      max-width: 960px;
+      max-height: 960px;
+      background: radial-gradient(circle, rgba(130, 65, 255, 0.52) 0%, rgba(88, 24, 228, 0.2) 48%, transparent 72%);
+      filter: blur(50px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .ambient-orb-right {
+      position: absolute;
+      top: 18%;
+      right: -6%;
+      width: 48vw;
+      height: 48vw;
+      max-width: 780px;
+      max-height: 780px;
+      background: radial-gradient(circle, rgba(124, 234, 164, 0.16) 0%, rgba(102, 36, 242, 0.3) 45%, transparent 74%);
+      filter: blur(55px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .ambient-bottom-vignette {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 0%, transparent 64%, rgba(5, 2, 12, 0.86) 89%, #04010A 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Giant Condensed Uppercase Display Typography ("BUILDING USEFUL THINGS" & "LEARNING") */
+    .display-condensed {
+      font-family: 'Anton', Impact, sans-serif;
+      text-transform: uppercase;
+      line-height: 0.87;
+      letter-spacing: 0.015em;
+      color: #FFFFFF;
+      user-select: none;
+      text-shadow: 0 20px 52px rgba(8, 2, 26, 0.65);
+    }
+
+    /* Editorial Serif Italic Sub-Headline ("one project at a time." / "by shipping.") */
+    .editorial-serif-italic {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-weight: 400;
+      line-height: 0.92;
+      letter-spacing: -0.015em;
+      color: #FFFFFF;
+      text-shadow: 0 12px 36px rgba(8, 2, 24, 0.65);
+    }
+
+    /* Top Navigation Link Styling (Scaled Up) */
+    .nav-item-link {
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.88);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .nav-item-link:hover {
+      color: var(--accent-mint);
+    }
+
+    /* Top-right Outlined Mint Pill Button (Scaled Up) */
+    .btn-outline-mint {
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      text-decoration: none;
+      border: 1.5px solid var(--accent-mint);
+      border-radius: 9999px;
+      padding: 0.7rem 1.7rem;
+      background: rgba(124, 234, 164, 0.06);
+      transition: all 0.22s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-outline-mint:hover {
+      background: var(--accent-mint);
+      color: #06130C;
+      box-shadow: 0 0 28px rgba(124, 234, 164, 0.5);
+      transform: translateY(-1px);
+    }
+
+    /* Primary Solid Mint Green Pill CTA (Scaled Up) */
+    .btn-solid-mint {
+      background-color: var(--accent-mint);
+      color: #06130C;
+      font-size: 0.92rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 9999px;
+      padding: 1.1rem 2.25rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.95rem;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 12px 36px -6px rgba(124, 234, 164, 0.5);
+    }
+
+    .btn-solid-mint:hover {
+      background-color: var(--accent-mint-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 16px 42px -4px rgba(124, 234, 164, 0.7);
+    }
+
+    .btn-solid-mint .arrow-icon {
+      transition: transform 0.22s ease;
+    }
+
+    .btn-solid-mint:hover .arrow-icon {
+      transform: translateX(5px);
+    }
+
+    /* =========================================================================
+       ULTRA-WILD OUT-OF-THE-BOX KINETIC POSTER INSTALLATION ("LEARNING BY SHIPPING")
+       ========================================================================= */
+    .chaos-poster-rig {
+      position: relative;
+      width: 100%;
+      min-height: 550px;
+      perspective: 1200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .chaos-3d-tilt-plane {
+      position: relative;
+      width: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.18s ease-out;
+    }
+
+    /* 1. Criss-Crossing Hazard Ticker Tape Ribbons */
+    @keyframes marqueeSlideLeft {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    @keyframes marqueeSlideRight {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(0%); }
+    }
+
+    .kinetic-tape-wrapper {
+      position: absolute;
+      left: -12%;
+      width: 124%;
+      overflow: hidden;
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .tape-top-mint {
+      top: 12px;
+      transform: rotate(-7deg) translateZ(15px);
+      background: var(--accent-mint);
+      color: #05020C;
+      border-top: 2px solid #FFFFFF;
+      border-bottom: 2px solid #FFFFFF;
+      padding: 4px 0;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.65);
+    }
+
+    .tape-bottom-violet {
+      bottom: 6px;
+      transform: rotate(5.5deg) translateZ(10px);
+      background: #070212;
+      color: var(--accent-mint);
+      border-top: 1.5px solid var(--accent-mint);
+      border-bottom: 1.5px solid var(--accent-mint);
+      padding: 4px 0;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.75);
+    }
+
+    .marquee-track-left {
+      display: inline-block;
+      animation: marqueeSlideLeft 16s linear infinite;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+    .marquee-track-right {
+      display: inline-block;
+      animation: marqueeSlideRight 18s linear infinite;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+    /* 2. Chromatic Glitch & Sliced "LEARNING" Typography Stack */
+    .learning-glitch-stack {
+      position: relative;
+      display: inline-block;
+      transform: rotate(-3deg) translateZ(42px);
+      z-index: 15;
+    }
+
+    .learning-ghost-echo-1 {
+      position: absolute;
+      top: -18px;
+      left: -18px;
+      font-family: 'Anton', Impact, sans-serif;
+      color: transparent;
+      -webkit-text-stroke: 1.5px rgba(124, 234, 164, 0.45);
+      pointer-events: none;
+      user-select: none;
+      z-index: -1;
+    }
+
+    .learning-ghost-echo-2 {
+      position: absolute;
+      top: 14px;
+      left: 16px;
+      font-family: 'Anton', Impact, sans-serif;
+      color: transparent;
+      -webkit-text-stroke: 1.5px rgba(164, 110, 255, 0.5);
+      pointer-events: none;
+      user-select: none;
+      z-index: -2;
+    }
+
+    /* 3. "by shipping." Torn Acid-Mint Brutalist Cutout Stamp */
+    .by-shipping-cutout {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: #FFFFFF;
+      color: #05020C;
+      padding: 0.2rem 1.65rem 0.45rem 1.5rem;
+      transform: rotate(4.5deg) skewX(-8deg) translateZ(60px);
+      border: 3px solid var(--accent-mint);
+      box-shadow:
+        12px 14px 0px var(--accent-mint),
+        -8px -8px 0px rgba(91, 24, 232, 0.9),
+        0 22px 48px rgba(0, 0, 0, 0.8);
+      z-index: 25;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+    }
+
+    .by-shipping-cutout:hover {
+      transform: rotate(0deg) skewX(0deg) scale(1.06) translateZ(75px);
+      box-shadow:
+        16px 18px 0px var(--accent-mint),
+        -10px -10px 0px #5B18E8,
+        0 28px 60px rgba(124, 234, 164, 0.55);
+    }
+
+    .by-shipping-text {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-weight: 700;
+      color: #05020C;
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+    }
+
+    /* 4. Out-of-the-Box Deconstructed Constellation Shards (The 4 Requested Items) */
+    .shard-constellation {
+      position: relative;
+      z-index: 20;
+      margin-top: 2.2rem;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 0.85rem;
+    }
+
+    .cyber-shard-card {
+      position: relative;
+      text-decoration: none;
+      padding: 1rem 1.25rem;
+      background: rgba(8, 2, 22, 0.86);
+      border: 1.5px solid rgba(255, 255, 255, 0.28);
+      backdrop-filter: blur(16px);
+      transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+
+    /* Distinct Wild Angles & Offsets for Each of the 4 Shards */
+    .shard-1 {
+      grid-column: span 7;
+      transform: rotate(-2.5deg) translateZ(35px);
+      border-left: 5px solid var(--accent-mint);
+      box-shadow: -8px 10px 0px rgba(124, 234, 164, 0.22), 0 18px 36px rgba(0, 0, 0, 0.65);
+    }
+
+    .shard-2 {
+      grid-column: span 5;
+      transform: rotate(3.2deg) translateY(-10px) translateZ(50px);
+      background: linear-gradient(135deg, rgba(91, 24, 232, 0.72) 0%, rgba(10, 3, 28, 0.92) 100%);
+      border-top: 4px solid var(--accent-mint);
+      box-shadow: 8px 10px 0px rgba(255, 255, 255, 0.16), 0 18px 36px rgba(0, 0, 0, 0.65);
+    }
+
+    .shard-3 {
+      grid-column: span 5;
+      transform: rotate(2.2deg) translateY(6px) translateZ(45px);
+      background: linear-gradient(135deg, rgba(16, 5, 44, 0.92) 0%, rgba(60, 9, 168, 0.68) 100%);
+      border-bottom: 4px solid var(--accent-mint);
+      box-shadow: -8px 10px 0px rgba(91, 24, 232, 0.45), 0 18px 36px rgba(0, 0, 0, 0.65);
+    }
+
+    .shard-4 {
+      grid-column: span 7;
+      transform: rotate(-1.8deg) translateZ(38px);
+      border-right: 5px solid var(--accent-mint);
+      box-shadow: 10px 10px 0px rgba(124, 234, 164, 0.25), 0 18px 36px rgba(0, 0, 0, 0.65);
+    }
+
+    @media (max-width: 640px) {
+      .shard-1, .shard-2, .shard-3, .shard-4 {
+        grid-column: span 12;
+        transform: none !important;
+      }
+    }
+
+    .cyber-shard-card:hover {
+      background: var(--accent-mint) !important;
+      color: #05020C !important;
+      border-color: #FFFFFF !important;
+      transform: rotate(0deg) scale(1.06) translateZ(80px) !important;
+      box-shadow:
+        10px 12px 0px #FFFFFF,
+        0 24px 50px rgba(124, 234, 164, 0.55) !important;
+      z-index: 40;
+    }
+
+    .cyber-shard-card:hover .shard-num,
+    .cyber-shard-card:hover .shard-label,
+    .cyber-shard-card:hover .shard-code,
+    .cyber-shard-card:hover .shard-arrow {
+      color: #05020C !important;
+      border-color: #05020C !important;
+    }
+
+    /* Giant Watermark Number Inside Each Shard */
+    .shard-bg-number {
+      position: absolute;
+      right: 6px;
+      bottom: -14px;
+      font-family: 'Anton', Impact, sans-serif;
+      font-size: 4.2rem;
+      line-height: 1;
+      color: rgba(255, 255, 255, 0.06);
+      pointer-events: none;
+      user-select: none;
+      transition: color 0.25s ease;
+    }
+
+    .cyber-shard-card:hover .shard-bg-number {
+      color: rgba(5, 2, 12, 0.12);
+    }
+
+    /* Rotating Orbital Ring Behind the Poster Sculpture */
+    @keyframes spinOrbit {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    .orbital-wireframe {
+      position: absolute;
+      top: 46%;
+      left: 52%;
+      width: 440px;
+      height: 440px;
+      border: 1px dashed rgba(124, 234, 164, 0.32);
+      border-radius: 9999px;
+      pointer-events: none;
+      z-index: 1;
+      animation: spinOrbit 28s linear infinite;
+    }
+
+    /* Single-Line Bottom Tool Strip */
+    .tool-brand-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: rgba(255, 255, 255, 0.94);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s ease, transform 0.2s ease;
+      padding: 0.2rem 0.25rem;
+    }
+
+    .tool-brand-link:hover {
+      color: var(--accent-mint);
+      transform: translateY(-2px);
+    }
+  </style>
 </head>
+<body class="selection:bg-[#7CEAA4] selection:text-[#05020C]">
 
-<body>
+  <!-- =========================================================================
+       FULL-BLEED HOME / INDEX PAGE (EDGE-TO-EDGE SPREAD, BIGGER FONTS, WILD KINETIC SCULPTURE)
+       ========================================================================= -->
+  <div class="hero-canvas">
+    <!-- Ambient Lighting Layers -->
+    <div class="ambient-orb-left"></div>
+    <div class="ambient-orb-right"></div>
+    <div class="ambient-bottom-vignette"></div>
 
-  <header class="site-header">
-
-    <a
-      href="index.html"
-      class="brand"
-      aria-label="Adhish Bhandari home"
-    >
-      AB.
-    </a>
-
-    <nav class="nav" aria-label="Main navigation">
-      <a href="about.html">About</a>
-      <a href="skills.html">Skills</a>
-      <a href="projects.html">Projects</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-
-  </header>
-
-  <main>
-
-    <section class="hero">
-
-      <div class="hero-left">
-
-        <p class="eyebrow">
-          Computing with AI student | Islington College
-        </p>
-
-        <h1>
-          Building useful things, one project at a time.
-        </h1>
-
-        <p class="intro">
-          I’m Adhish Bhandari, a computing student working across frontend
-          development, Angular, Java, Python, databases, software engineering,
-          IoT, and data analysis. I enjoy turning ideas into clear, practical
-          projects while strengthening the logic and engineering behind them.
-        </p>
-
-        <div class="hero-actions">
-
-          <a href="projects.html" class="btn btn-main">
-            View Projects
-          </a>
-
-          <a href="about.html" class="btn btn-ghost">
-            More About Me
-          </a>
-
+    <!-- 1. FULL-WIDTH TOP NAVIGATION BAR -->
+    <header class="relative z-20 w-full px-6 sm:px-12 lg:px-16 xl:px-24 pt-8 pb-4 flex items-center justify-between gap-6">
+      <!-- Brand Lockup ("adhish-bh" — no dot, bigger font, accesses Home) -->
+      <a href="https://adhish-bh.github.io/portfolio/index.html" class="group flex flex-col items-start focus:outline-none">
+        <div class="text-2xl sm:text-3xl lg:text-[34px] font-extrabold tracking-tight leading-none text-white group-hover:text-[#7CEAA4] transition-colors">
+          adhish-bh
         </div>
+        <span class="text-[9.5px] sm:text-[10.5px] font-semibold tracking-[0.24em] uppercase text-white/80 mt-2">
+          COMPUTING WITH AI STUDENT | ISLINGTON COLLEGE
+        </span>
+      </a>
 
+      <!-- Center Navigation Links -->
+      <nav aria-label="Primary Navigation" class="hidden md:flex items-center gap-10 lg:gap-14">
+        <a href="https://adhish-bh.github.io/portfolio/about.html" class="nav-item-link">About</a>
+        <a href="https://adhish-bh.github.io/portfolio/skills.html" class="nav-item-link">Skills</a>
+        <a href="https://adhish-bh.github.io/portfolio/projects.html" class="nav-item-link">Projects</a>
+        <a href="https://adhish-bh.github.io/portfolio/contact.html" class="nav-item-link">Contact</a>
+      </nav>
+
+      <!-- Right Navigation Action -->
+      <div class="flex items-center">
+        <a href="https://adhish-bh.github.io/portfolio/contact.html" class="btn-outline-mint">
+          <span>Get In Touch</span>
+        </a>
       </div>
+    </header>
 
-      <aside class="hero-note">
+    <!-- 2. FULL-BLEED MAIN HERO STAGE -->
+    <main class="relative z-20 flex-1 w-full px-6 sm:px-12 lg:px-16 xl:px-24 flex flex-col justify-center py-4">
+      <div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 xl:gap-14 items-center">
 
-        <div class="hero-note-top">
-
-          <p class="note-title">
-            Current build mode
-          </p>
-
-          <span
-            class="status-dot"
-            aria-hidden="true"
-          ></span>
-
-        </div>
-
-        <div class="hero-note-copy">
-
-          <h2>
-            Learning by shipping.
-          </h2>
-
-          <p>
-            My recent work includes an Angular application tracker,
-            a Python desktop productivity app, and this multi-page
-            portfolio. Each project helps me explore a new tool,
-            improve the structure, and build something more complete.
-          </p>
-
-          <div class="build-list">
-            <span>Frontend systems</span>
-            <span>Python desktop apps</span>
-            <span>Automation and AI foundations</span>
+        <!-- LEFT COLUMN (6 Cols): Oversized "BUILDING USEFUL THINGS," + "one project at a time." + Larger Bio -->
+        <div class="lg:col-span-6 flex flex-col items-start text-left">
+          <div class="relative w-full">
+            <!-- Giant Condensed Headline (Same font as LEARNING) -->
+            <h1 class="display-condensed text-[4.4rem] sm:text-[6.2rem] lg:text-[6.6rem] xl:text-[8rem] 2xl:text-[8.8rem]">
+              BUILDING USEFUL THINGS,
+            </h1>
+            <!-- Giant Editorial Italic Sub-Headline -->
+            <div class="editorial-serif-italic text-[3.4rem] sm:text-[4.8rem] lg:text-[5.2rem] xl:text-[6.2rem] -mt-2 sm:-mt-3 pl-1">
+              one project at a time.
+            </div>
           </div>
 
+          <!-- Uppercase Lead Line -->
+          <p class="mt-7 sm:mt-9 text-sm sm:text-base lg:text-[17px] font-bold uppercase tracking-[0.12em] leading-[1.5] text-[#7CEAA4] max-w-[740px]">
+            AI &amp; ML ENGINEERING • DATA ENGINEERING • DATA ANALYSIS • INTELLIGENT AUTOMATION.
+          </p>
+
+          <!-- Updated Bio Paragraph -->
+          <p class="mt-4 text-sm sm:text-base lg:text-[17.5px] font-normal leading-[1.68] text-white/85 max-w-[720px]">
+            I'm Adhish Bhandari, a Computing with AI student focused on AI/ML engineering, data engineering, data analysis, and intelligent automation. I enjoy architecting scalable data pipelines, training machine learning models, uncovering actionable insights from complex datasets, and automating workflows into practical Python systems.
+          </p>
+
+          <!-- Mint Green Pill Button ("VIEW PROJECTS ->") + Secondary Link ("More About Me") -->
+          <div class="mt-8 sm:mt-10 flex flex-wrap items-center gap-6">
+            <a href="https://adhish-bh.github.io/portfolio/projects.html" class="btn-solid-mint">
+              <span>VIEW PROJECTS</span>
+              <svg class="w-5 h-5 arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </a>
+
+            <a href="https://adhish-bh.github.io/portfolio/about.html" class="text-xs sm:text-sm font-bold uppercase tracking-[0.18em] text-white/90 hover:text-[#7CEAA4] transition-colors py-2">
+              More About Me →
+            </a>
+          </div>
         </div>
 
-      </aside>
+        <!-- RIGHT COLUMN (6 Cols): ULTRA-WILD DECONSTRUCTED KINETIC POSTER COLLAGE FOR "LEARNING by shipping." -->
+        <div class="lg:col-span-6 relative">
+          <div id="chaos-rig" class="chaos-poster-rig">
+            <!-- Rotating Orbital Wireframe Compass Ring in Background -->
+            <div class="orbital-wireframe"></div>
 
-    </section>
+            <!-- Top Slanted Marquee Ribbon -->
+            <div class="kinetic-tape-wrapper tape-top-mint">
+              <div class="marquee-track-left">
+                ★ LEARNING BY SHIPPING ★ AI / ML ENGINEERING ★ DATA ENGINEERING ★ DATA ANALYSIS ★ PYTHON DEVELOPMENT ★ LEARNING BY SHIPPING ★ AI / ML ENGINEERING ★ DATA ENGINEERING ★ DATA ANALYSIS ★ PYTHON DEVELOPMENT
+              </div>
+            </div>
 
-    <section
-      class="home-project-strip"
-      aria-label="Featured projects"
-    >
+            <!-- Interactive 3D Tilted Poster Plane -->
+            <div id="chaos-plane" class="chaos-3d-tilt-plane pt-10 pb-8 px-2 sm:px-6">
 
-      <p>Recently built</p>
+              <!-- Deconstructed Typographic Explosion: Layered "LEARNING" + Brutalist Cutout "by shipping." -->
+              <div class="relative flex flex-col items-center lg:items-end text-center lg:text-right">
+                <!-- Triple-Layered Glitch / Outline "LEARNING" -->
+                <div class="learning-glitch-stack">
+                  <span aria-hidden="true" class="learning-ghost-echo-2 text-[5.2rem] sm:text-[7.2rem] xl:text-[8.6rem] leading-none">
+                    LEARNING
+                  </span>
+                  <span aria-hidden="true" class="learning-ghost-echo-1 text-[5.2rem] sm:text-[7.2rem] xl:text-[8.6rem] leading-none">
+                    LEARNING
+                  </span>
+                  <div class="display-condensed text-[5.2rem] sm:text-[7.2rem] xl:text-[8.6rem] leading-none relative z-10">
+                    LEARNING
+                  </div>
+                </div>
 
-      <div class="home-project-links">
+                <!-- Overlapping Acid-White & Neon-Mint Cutout Stamp for "by shipping." -->
+                <div class="-mt-5 sm:-mt-7 lg:mr-6">
+                  <a href="https://adhish-bh.github.io/portfolio/projects.html" class="by-shipping-cutout">
+                    <span class="by-shipping-text text-[2.7rem] sm:text-[3.7rem] xl:text-[4.4rem]">
+                      by shipping.
+                    </span>
+                    <span class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-[#05020C] text-[#7CEAA4] font-mono-editorial text-sm font-extrabold">
+                      ⚡
+                    </span>
+                  </a>
+                </div>
+              </div>
 
-        <a href="projects.html#applyflow">
-          ApplyFlow / Angular
-        </a>
+              <!-- 4 Asymmetric Tilted Brutalist Shards (Only the 4 Requested Disciplines) -->
+              <div class="shard-constellation">
 
-        <a href="projects.html#dailydesk">
-          DailyDesk / Python
-        </a>
+                <!-- Shard 01: AI / ML ENGINEERING -->
+                <a href="https://adhish-bh.github.io/portfolio/projects.html" class="cyber-shard-card shard-1 group">
+                  <span class="shard-bg-number">01</span>
+                  <div class="flex items-center justify-between gap-2 mb-3">
+                    <span class="shard-num font-mono-editorial text-[10px] font-bold uppercase tracking-[0.22em] px-2 py-0.5 bg-[#7CEAA4] text-[#05020C]">
+                      NODE // 01
+                    </span>
+                    <span class="shard-arrow font-mono-editorial text-sm font-bold text-[#7CEAA4]">↗</span>
+                  </div>
+                  <div class="shard-label text-base sm:text-lg xl:text-xl font-extrabold uppercase tracking-[0.12em] text-white relative z-10">
+                    AI / ML ENGINEERING
+                  </div>
+                  <div class="shard-code mt-1.5 font-mono-editorial text-[10px] uppercase tracking-[0.18em] text-white/60 relative z-10">
+                    NEURAL ARCHITECTURES • MODEL TRAINING
+                  </div>
+                </a>
 
-        <a href="projects.html#portfolio">
-          Portfolio / HTML & CSS
-        </a>
+                <!-- Shard 02: DATA ENGINEERING -->
+                <a href="https://adhish-bh.github.io/portfolio/projects.html" class="cyber-shard-card shard-2 group">
+                  <span class="shard-bg-number">02</span>
+                  <div class="flex items-center justify-between gap-2 mb-3">
+                    <span class="shard-num font-mono-editorial text-[10px] font-bold uppercase tracking-[0.22em] px-2 py-0.5 border border-[#7CEAA4] text-[#7CEAA4]">
+                      NODE // 02
+                    </span>
+                    <span class="shard-arrow font-mono-editorial text-sm font-bold text-[#7CEAA4]">↗</span>
+                  </div>
+                  <div class="shard-label text-base sm:text-lg xl:text-xl font-extrabold uppercase tracking-[0.12em] text-white relative z-10">
+                    DATA ENGINEERING
+                  </div>
+                  <div class="shard-code mt-1.5 font-mono-editorial text-[10px] uppercase tracking-[0.18em] text-white/65 relative z-10">
+                    ETL PIPELINES • WAREHOUSING
+                  </div>
+                </a>
 
-        <a href="projects.html">
-          Explore full archive →
-        </a>
+                <!-- Shard 03: DATA ANALYSIS -->
+                <a href="https://adhish-bh.github.io/portfolio/projects.html" class="cyber-shard-card shard-3 group">
+                  <span class="shard-bg-number">03</span>
+                  <div class="flex items-center justify-between gap-2 mb-3">
+                    <span class="shard-num font-mono-editorial text-[10px] font-bold uppercase tracking-[0.22em] px-2 py-0.5 border border-[#7CEAA4] text-[#7CEAA4]">
+                      NODE // 03
+                    </span>
+                    <span class="shard-arrow font-mono-editorial text-sm font-bold text-[#7CEAA4]">↗</span>
+                  </div>
+                  <div class="shard-label text-base sm:text-lg xl:text-xl font-extrabold uppercase tracking-[0.12em] text-white relative z-10">
+                    DATA ANALYSIS
+                  </div>
+                  <div class="shard-code mt-1.5 font-mono-editorial text-[10px] uppercase tracking-[0.18em] text-white/65 relative z-10">
+                    EDA • STATISTICAL INSIGHTS
+                  </div>
+                </a>
+
+                <!-- Shard 04: PYTHON DEVELOPMENT -->
+                <a href="https://adhish-bh.github.io/portfolio/projects.html" class="cyber-shard-card shard-4 group">
+                  <span class="shard-bg-number">04</span>
+                  <div class="flex items-center justify-between gap-2 mb-3">
+                    <span class="shard-num font-mono-editorial text-[10px] font-bold uppercase tracking-[0.22em] px-2 py-0.5 bg-[#7CEAA4] text-[#05020C]">
+                      NODE // 04
+                    </span>
+                    <span class="shard-arrow font-mono-editorial text-sm font-bold text-[#7CEAA4]">↗</span>
+                  </div>
+                  <div class="shard-label text-base sm:text-lg xl:text-xl font-extrabold uppercase tracking-[0.12em] text-white relative z-10">
+                    PYTHON DEVELOPMENT
+                  </div>
+                  <div class="shard-code mt-1.5 font-mono-editorial text-[10px] uppercase tracking-[0.18em] text-white/60 relative z-10">
+                    AUTOMATION SYSTEMS • CORE LOGIC
+                  </div>
+                </a>
+
+              </div>
+            </div>
+
+            <!-- Bottom Slanted Marquee Ribbon -->
+            <div class="kinetic-tape-wrapper tape-bottom-violet">
+              <div class="marquee-track-right">
+                // CURRENT BUILD MODE // SHIP FAST // ITERATE DEEPLY // AI &amp; DATA SYSTEMS // ADHISH-BH // CURRENT BUILD MODE // SHIP FAST // ITERATE DEEPLY // AI &amp; DATA SYSTEMS // ADHISH-BH
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- 3. BOTTOM INDUSTRY TOOLS & ECOSYSTEM BAR — STRICTLY SINGLE LINE ACROSS THE FULL WIDTH -->
+    <footer class="relative z-20 w-full px-6 sm:px-12 lg:px-16 xl:px-24 pb-7 pt-4">
+      <div class="w-full border-t border-white/15 pt-5 flex items-center justify-between gap-4 overflow-x-auto whitespace-nowrap">
+
+        <!-- Left Inline Label in the Same Single Line -->
+        <div class="flex items-center gap-3 shrink-0">
+          <span class="w-6 h-[2px] bg-[#7CEAA4]"></span>
+          <span class="font-mono-editorial text-[11px] sm:text-xs font-bold uppercase tracking-[0.24em] text-[#7CEAA4]">
+            INDUSTRY TOOLS &amp; ECOSYSTEM
+          </span>
+          <span class="w-6 h-[2px] bg-[#7CEAA4]/50"></span>
+        </div>
+
+        <!-- All 9 Tools in One Unbroken Horizontal Line -->
+        <div class="flex items-center justify-end gap-4 lg:gap-6 xl:gap-8 shrink-0">
+          <!-- 1. Databricks -->
+          <a href="https://adhish-bh.github.io/portfolio/skills.html" class="tool-brand-link">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-[#7CEAA4]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+              <polyline points="2 12 12 17 22 12"></polyline>
+              <polyline points="2 17 12 22 22 17"></polyline>
+            </svg>
+            <span class="text-sm sm:text-base lg:text-[17px] font-bold tracking-tight">Databricks</span>
+          </a>
+
+          <span class="h-4 w-[1px] bg-white/20 shrink-0"></span>
+
+          <!-- 2. Docker -->
+          <a href="https://adhish-bh.github.io/portfolio/skills.html" class="tool-brand-link">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-[#7CEAA4]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="10" width="4" height="4"></rect>
+              <rect x="7" y="10" width="4" height="4"></rect>
+              <rect x="11" y="10" width="4" height="4"></rect>
+              <rect x="7" y="6" width="4" height="4"></rect>
+              <rect x="11" y="6" width="4" height="4"></rect>
+              <path d="M2 14h16c1.7 0 3-1 3.5-2.5-.8-.5-2-.5-2.5 0C18.5 16.5 14 19 8.5 19 4.5 19 2 17 2 14z"></path>
+            </svg>
+            <span class="text-sm sm:text-base lg:text-[17px] font-bold tracking-tight">Docker</span>
+          </a>
+
+          <span class="h-4 w-[1px] bg-white/20 shrink-0"></span>
+
+          <!-- 3. GitHub -->
+          <a href="https://github.com/adhish-bh" target="_blank" rel="noopener noreferrer" class="tool-brand-link">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-[#7CEAA4]" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+            </svg>
+            <span class="text-sm sm:text-base lg:text-[17px] font-bold tracking-tight">GitHub</span>
+          </a>
+
+          <span class="h-4 w-[1px] bg-white/20 shrink-0"></span>
+
+          <!-- 4. PySpark -->
+          <a href="https://adhish-bh.github.io/portfolio/skills.html" class="tool-brand-link">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-[#7CEAA4]" viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+            <span class="text-sm sm:text-base lg:text-[17px] font-bold tracking-tight">PySpark</span>
+          </a>
+
+          <span class="h-4 w-[1px] bg-white/20 shrink-0"></span>
+
+          <!-- 5. PyTorch -->
+          <a href="https://adhish-bh.github.io/portfolio/skills.html" class="tool-brand-link">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-[#7CEAA4]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2l-4.5 4.5a7.5 7.5 0 1 0 10.6 0L15 3.4"></path>
+              <circle cx="15" cy="7" r="1" fill="currentColor"></circle>
+            </svg>
+            <span class="text-sm sm:text-base lg:text-[17px] font-bold tracking-tight">PyTorch</span>
+          </a>
+
+          <span class="h-4 w-[1px] bg-white/20 shrink-0"></span>
+
+          <!-- 6. Figma -->
+          <a href="https://adhish-bh.github.io/portfolio/skills.html" class="tool-brand-link">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-[#7CEAA4]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 5.5A3.5 3.5 0 0 1 8.5 2H12v7H8.5A3.5 3.5 0 0 1 5 5.5z"></path>
+              <path d="M12 2h3.5a3.5 3.5 0 1 1 0 7H12V2z"></path>
+              <path d="M12 12.5a3.5 3.5 0 1 1 7 0 3.5 3.5 0 1 1-7 0z"></path>
+              <path d="M5 19.5A3.5 3.5 0 0 1 8.5 16H12v3.5a3.5 3.5 0 1 1-7 0z"></path>
+              <path d="M5 12.5A3.5 3.5 0 0 1 8.5 9H12v7H8.5A3.5 3.5 0 0 1 5 12.5z"></path>
+            </svg>
+            <span class="text-sm sm:text-base lg:text-[17px] font-bold tracking-tight">Figma</span>
+          </a>
+
+          <span class="h-4 w-[1px] bg-white/20 shrink-0"></span>
+
+          <!-- 7. PostgreSQL -->
+          <a href="https://adhish-bh.github.io/portfolio/skills.html" class="tool-brand-link">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-[#7CEAA4]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+              <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+            </svg>
+            <span class="text-sm sm:text-base lg:text-[17px] font-bold tracking-tight">PostgreSQL</span>
+          </a>
+
+          <span class="h-4 w-[1px] bg-white/20 shrink-0"></span>
+
+          <!-- 8. MongoDB -->
+          <a href="https://adhish-bh.github.io/portfolio/skills.html" class="tool-brand-link">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-[#7CEAA4]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2C7.5 7 6 11.5 6 15a6 6 0 0 0 12 0c0-3.5-1.5-8-6-13z"></path>
+              <line x1="12" y1="22" x2="12" y2="12"></line>
+            </svg>
+            <span class="text-sm sm:text-base lg:text-[17px] font-bold tracking-tight">MongoDB</span>
+          </a>
+
+          <span class="h-4 w-[1px] bg-white/20 shrink-0"></span>
+
+          <!-- 9. Snowflake -->
+          <a href="https://adhish-bh.github.io/portfolio/skills.html" class="tool-brand-link">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-[#7CEAA4]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="2" x2="12" y2="22"></line>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+              <line x1="19.07" y1="4.93" x2="4.93" y2="19.07"></line>
+            </svg>
+            <span class="text-sm sm:text-base lg:text-[17px] font-bold tracking-tight">Snowflake</span>
+          </a>
+        </div>
 
       </div>
 
-    </section>
+      <!-- Trademark & Built With Line Below Industry Tools & Ecosystem -->
+      <div class="w-full mt-4 pt-3 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] sm:text-xs font-mono-editorial uppercase tracking-[0.2em] text-white/55">
+        <span>© 2026 Adhish Bhandari™ (adhish-bh). All rights reserved.</span>
+        <span>Made with <strong class="text-[#7CEAA4] font-semibold">HTML, CSS &amp; JS</strong></span>
+      </div>
+    </footer>
+  </div>
 
-  </main>
+  <!-- Interactive 3D Parallax Mouse Tilt on the Wild Poster Rig -->
+  <script>
+    (function () {
+      const rig = document.getElementById('chaos-rig');
+      const plane = document.getElementById('chaos-plane');
+      if (!rig || !plane) return;
 
-  <footer>
-    <p>
-      © 2026 Adhish Bhandari. Built with HTML and CSS.
-    </p>
-  </footer>
+      rig.addEventListener('mousemove', function (e) {
+        const rect = rig.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        plane.style.transform = `rotateY(${x * 14}deg) rotateX(${-y * 14}deg)`;
+      });
 
+      rig.addEventListener('mouseleave', function () {
+        plane.style.transform = 'rotateY(0deg) rotateX(0deg)';
+      });
+    })();
+  </script>
 </body>
 </html>
